@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+
+	<!-- ajax请求默认返回JSON-->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<bean id="stringHttpMessageConverter"  
+		        class="org.springframework.http.converter.StringHttpMessageConverter">  
+		        <constructor-arg value="UTF-8" index="0"></constructor-arg>
+		        <!--避免出现乱码 -->  
+		        <property name="supportedMediaTypes">  
+		            <list>  
+		                <value>text/plain;charset=UTF-8</value>
+		                <value>text/xml;charset=UTF-8</value>  
+		            </list>  
+		        </property>
+		    </bean>
+			<bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<!-- <mvc:annotation-driven/> -->
+	<mvc:default-servlet-handler />
+
+	<!-- component-scan自动搜索@Component , @Controller , @Service , @Repository等标注的类 -->
+	<!-- 默认值如果适合，该项可以不用修改 -->
+	<context:component-scan base-package="com.ai.weixin.controller" />
+
+	<!-- 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<ref bean="sso_interceptor_weixin" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="sso_interceptor" class="com.ai.flow.interceptor.SSOInterceptor" />
+	<bean id="sso_interceptor_weixin" class="com.ai.flow.interceptor.SSOInterceptorWeixin" /> 
+	-->
+	
+</beans>
