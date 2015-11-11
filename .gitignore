@@ -9,4 +9,3 @@ buildNumber.properties
 .settings
 .classpath
 .project
-/src/main/resources/config/dev/weixin.properties
