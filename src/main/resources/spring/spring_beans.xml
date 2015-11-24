@@ -35,12 +35,12 @@
 	</mvc:annotation-driven>
 	<context:component-scan base-package="com.ai.weixin.service" />
 
-	<bean id="soaRestOauthDAO" class="com.ai.rest.dao.SOARestOauthDAO">
+	<!--<bean id="soaRestOauthDAO" class="com.ai.rest.dao.SOARestOauthDAO">
 		<property name="driverClass" value="${jdbc.driverClassName_rest}" />
 		<property name="name" value="${jdbc.username_rest}" />
 		<property name="pwd" value="${jdbc.password_rest}" />
 		<property name="url" value="${jdbc.url_rest}" />
-	</bean>
+	</bean>-->
 
 	<!-- view -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
@@ -59,8 +59,8 @@
 		<property name="templateLoaderPath" value="/WEB-INF/views/" />
 		<property name="freemarkerVariables">
 			<map>
-				<entry key="mainDomain" value="${mainDomain}" />
-				<entry key="miscDomain" value="${miscDomain}" />
+				<!--<entry key="mainDomain" value="${mainDomain}" />-->
+				<!--<entry key="miscDomain" value="${miscDomain}" />-->
 			</map>
 		</property>
 		<property name="freemarkerSettings">
